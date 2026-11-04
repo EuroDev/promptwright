@@ -43,13 +43,28 @@ pretends to have saved an address it discarded.
 
 ## Deploy to Vercel
 
-1. Push this branch to GitHub.
-2. In Vercel, **Add New → Project**, import the repo. The defaults are correct; it detects
-   Next.js on its own.
-3. Add the environment variables above under **Settings → Environment Variables**.
-4. **Settings → Domains**, add `promptwright.io`, and point the domain's nameservers at
-   Vercel (or add the records Vercel shows if you keep DNS at Cloudflare).
-5. Redeploy so the new env vars are picked up.
+The domain is `promptwright.cloud`, registered at IONOS.
+
+1. In Vercel, **Add New → Project** and import `EuroDev/promptwright`. It detects Next.js;
+   the defaults are correct.
+2. Add the environment variables above under **Settings → Environment Variables**, for
+   Production, Preview and Development.
+3. **Settings → Domains** → add `promptwright.cloud`. Accept the prompt to add `www` too.
+4. Vercel then shows the exact DNS records **for this project**. Copy them as shown —
+   the apex `A` record value and, importantly, the `www` `CNAME` target, which is now
+   per-project (something like `d1d4fc829fe7bc7c.vercel-dns-017.com`) rather than the old
+   shared `cname.vercel-dns.com`.
+5. In IONOS: **Domains & SSL** → `promptwright.cloud` → **DNS**. Add an `A` record with
+   host `@` and the value Vercel showed, and a `CNAME` with host `www` pointing at Vercel's
+   per-project target. Delete any pre-existing IONOS parking/forwarding `A` or `CNAME`
+   record for `@` or `www` first, or the domain will show an invalid configuration.
+6. Wait for propagation (usually minutes, up to a few hours). Vercel issues the TLS
+   certificate automatically once the records resolve.
+7. Redeploy so the environment variables are picked up.
+
+Alternatively, point IONOS at Vercel's nameservers and let Vercel manage DNS. Only do that
+if no email or other records live on this domain — changing nameservers moves *all* DNS,
+not just the website.
 
 ## Layout
 

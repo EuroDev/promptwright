@@ -20,7 +20,7 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://promptwright.io";
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://promptwright.cloud";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),

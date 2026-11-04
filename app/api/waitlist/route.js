@@ -65,7 +65,7 @@ export async function POST(request) {
     role: String(role).slice(0, 80),
     model: String(model).slice(0, 40),
     note: String(note).slice(0, 400),
-    source: "promptwright.io",
+    source: "promptwright.cloud",
     joinedAt: new Date().toISOString(),
   };
 

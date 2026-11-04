@@ -54,7 +54,7 @@ export default function Linter() {
     ];
     if (a.warnings.length) lines.push("Problems: " + a.warnings.map((w) => w.t).join("; "));
     lines.push(gaps.length ? "Missing: " + gaps.join(", ") : "Nothing missing.");
-    lines.push("", "Scored free at promptwright.io");
+    lines.push("", "Scored free at promptwright.cloud");
     return lines.join("\n");
   }
 
